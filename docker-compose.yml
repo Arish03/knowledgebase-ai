@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  # -----------------------------------------------------------------------
+  # FastAPI backend — exposes /ask, /health, /reindex
+  # -----------------------------------------------------------------------
+  api:
+    build: .
+    command: uvicorn app.api.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./company_docs:/app/company_docs
+    restart: unless-stopped
+
+  # -----------------------------------------------------------------------
+  # Streamlit chat UI
+  # -----------------------------------------------------------------------
+  ui:
+    build: .
+    command: streamlit run app/ui/chat.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      # Inside Docker Compose, the API is reachable via the service name.
+      - API_BASE_URL=http://api:8000
+    env_file:
+      - .env
+    depends_on:
+      - api
+    restart: unless-stopped
+
+# NOTE: Ollama is NOT part of this compose file.
+# It runs on a separate VM, reachable via OLLAMA_BASE_URL in .env.
