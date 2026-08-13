@@ -12,6 +12,8 @@ services:
     volumes:
       - ./chroma_db:/app/chroma_db
       - ./company_docs:/app/company_docs
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
   # -----------------------------------------------------------------------
