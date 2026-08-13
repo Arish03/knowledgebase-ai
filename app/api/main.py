@@ -98,6 +98,8 @@ async def ask_endpoint(body: AskRequest):
             detail=f"Vector store not ready: {exc}. Run /reindex first.",
         )
     except Exception as exc:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(exc))
 
 
@@ -145,6 +147,8 @@ async def reindex_endpoint():
         result = run_ingestion()
         return ReindexResponse(status="completed", **result)
     except Exception as exc:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Ingestion failed: {exc}")
 
 
