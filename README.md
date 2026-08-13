@@ -249,3 +249,17 @@ python -m pytest tests/test_tool_calling.py -v
 - **No Third-Party Cloud APIs**: Zero external data leaks — all LLM and vector calculations stay within your internal network.
 - **Strict SQL Parameterization**: Every tool query uses explicit `%s` positional placeholders. Dynamic SQL execution is physically impossible.
 - **Read-Only Scoping**: Database queries are strictly read-only SELECT operations.
+
+---
+
+## 👤 Author & Maintainer
+
+- **Developer**: **Arish** ([@Arish03](https://github.com/Arish03))
+- **Repository**: [Arish03/knowledgebase-ai](https://github.com/Arish03/knowledgebase-ai)
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
