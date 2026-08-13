@@ -4,7 +4,7 @@ suitable for embedding and retrieval.
 """
 
 from typing import List
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 # Spec: chunk_size=800, chunk_overlap=100
